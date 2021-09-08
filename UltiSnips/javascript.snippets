@@ -1,0 +1,77 @@
+snippet i 
+import ${1} from '${2}';
+endsnippet
+
+snippet if
+if (${1}) {
+	${2}
+} else if (${3}) {
+	${4}
+} else {
+	${5}	
+}
+endsnippet
+
+snippet cl
+console.log(${1})
+endsnippet
+
+snippet for
+for (let i = 0; i < ${1}; i++) {
+	${2}
+}
+endsnippet
+
+snippet foro
+for (const key in ${1}) {
+	${2}[key]
+}
+endsnippet
+
+snippet while
+while (${1}) {
+	${2}
+}
+endsnippet
+
+snippet do
+do {
+	${1}
+} while (${2})
+endsnippet
+
+
+snippet switch
+switch (${1}) {
+	case '${2}':
+		${3}
+		break
+	default:
+		${4}
+}
+endsnippet
+
+snippet $
+\${${1}}
+endsnippet
+
+snippet fun
+function ${1}(${2}) {
+	${3}
+}
+endsnippet
+
+snippet =>
+(${1}) => ${2} 
+endsnippet
+
+snippet co
+const ${1} = ${2} => ${3} 
+endsnippet
+
+snippet test 
+test('${1}', () => {
+	expect(${2}(${3})).toBe(${4})
+})
+endsnippet
+
