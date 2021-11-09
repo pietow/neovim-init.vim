@@ -16,9 +16,20 @@ snippet cl
 console.log(${1})
 endsnippet
 
+# Expand console. log
+#snippet "([^\s][a-zA-Z0-9'"`().]+)\.cl" "console.log(postfix)" r
+snippet "(.+)\.cl" "console.log(postfix)" r
+console.log(`!p snip.rv = match.group(1)`)$0
+endsnippet
+
+# Remove console. log
+snippet "console.log(.+)\.u" "undo.console.log(postfix)" r
+`!p snip.rv = match.group(1)[1:-1]`$0
+endsnippet
+
 snippet for
 for (let i = 0; i < ${1}; i++) {
-	${2}
+	${2:${VISUAL}}
 }
 endsnippet
 
@@ -51,18 +62,23 @@ switch (${1}) {
 }
 endsnippet
 
-snippet $
-\${${1}}
+# snippet $
+# \${${1}}
+# endsnippet
+
+snippet "(.)(\$)" "string interpolation " r
+`!p snip.rv = match.group(1) + match.group(2)`{${1}}
 endsnippet
 
-snippet fun
-function ${1}(${2}) {
-	${3}
+
+snippet fun "function" b
+function ${1:name}(${2}) {
+	${3:${VISUAL}}
 }
 endsnippet
 
-snippet =>
-(${1}) => ${2} 
+snippet "(.)(=>)" "arrow function" r
+`!p snip.rv = match.group(1)`(${1}) => ${2}
 endsnippet
 
 snippet co
@@ -75,3 +91,30 @@ test('${1}', () => {
 })
 endsnippet
 
+snippet "(\S+) (\d+)" "Repeat token n times" r
+`!p snip.rv = int(match.group(2)) * match.group(1)`
+endsnippet
+
+global !p
+def properties(stri):
+	if stri.isspace() or stri == '':
+		return ''
+	return ''.join(list(map(lambda x: '\tthis.' + x.strip() +  ' = '+ x.strip() + '\n' ,stri.split(','))))
+	# return 2 * '\t' + stri.replace(',', '\n ' + 2 * '\t')
+endglobal
+
+snippet class "Class expression" b
+class ${1:Name} {
+	constructor(${2:one}) {
+`!p
+snip.rv = properties(t[2])
+`
+	}
+}
+endsnippet
+
+snippet Prom 
+new Promise ((resolve, reject) => {
+	${1}
+})
+endsnippet
