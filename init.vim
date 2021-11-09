@@ -26,9 +26,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bkad/CamelCaseMotion'
+Plug 'mattn/emmet-vim'
 
 let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 call plug#end()
+
+"Emmet-vim
+let g:user_emmet_leader_key=','
 
 "Makros
 let @a= "%di)"
@@ -43,7 +47,7 @@ command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
 command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
 
 " Run jest for current test
-nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+nnoremap <leader>e :Jest<cr>
 
 " Init jest in current cwd, require global jest command exists
 command! JestInit :call CocAction('runCommand', 'jest.init')
@@ -138,9 +142,32 @@ nnoremap <leader>k :m -2<CR>==
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
 
+"highlight until end of line
+vnoremap $ $h
+
+"end of file center
+nnoremap G Gzz
+
+"run node on current file
+nnoremap <leader>n :!node %<CR>
+"run python on current file
+nnoremap <leader>p :!python3 %<CR>
+
+"toggle line number
+nnoremap <leader>r :set relativenumber!<cr>
+
+"add console.log
+nmap <Leader>cl _v$S)_iconsole.log
+
 "Edit init.vim easy"
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+
+"open tab
+nmap <Leader>t :tabedit %<cr>
+
+"close all split files except the one currently focused
+nnoremap <Leader>o : only<cr>
 
 "Add simple highlight removal.
 nmap <Leader><space> :nohlsearch<cr>
@@ -173,8 +200,12 @@ endif
 set undodir=$HOME/.config/nvim/undodir
 
 "Lua
-lua << EOF
-print('hello from lua 2')
-EOF
-lua require('basic')
-lua require('usermod.settings')
+" lua << EOF
+" print('hello from lua 2')
+" print(vim.api.nvim_win_get_cursor(0))
+" EOF
+" lua require('basic')
+" lua require('usermod.settings')
+command! Scratch lua require'tools'.makeScratch() 
+nmap <Leader>w :Scratch<cr>
+
