@@ -157,7 +157,7 @@ nnoremap <leader>p :!python3 %<CR>
 nnoremap <leader>r :set relativenumber!<cr>
 
 "add console.log
-nmap <Leader>cl _v$S)_iconsole.log
+" nmap <Leader>cl _v$S)_iconsole.log
 
 "Edit init.vim easy"
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
@@ -207,5 +207,5 @@ set undodir=$HOME/.config/nvim/undodir
 " lua require('basic')
 " lua require('usermod.settings')
 command! Scratch lua require'tools'.makeScratch() 
-nmap <Leader>w :Scratch<cr>
+nnoremap <Leader>c :Scratch<cr>
 
