@@ -2,15 +2,15 @@ snippet i
 import ${1} from '${2}';
 endsnippet
 
-snippet if
-if (${1}) {
-	${2}
-} else if (${3}) {
-	${4}
-} else {
-	${5}	
-}
-endsnippet
+# snippet if
+# if (${1}) {
+# 	${2}
+# } else if (${3}) {
+# 	${4}
+# } else {
+# 	${5}	
+# }
+# endsnippet
 
 snippet cl
 console.log(${1})
@@ -29,36 +29,36 @@ endsnippet
 
 snippet for
 for (let i = 0; i < ${1}; i++) {
-	${2:${VISUAL}}
+		${2:${VISUAL}}
 }
 endsnippet
 
 snippet foro
 for (const key in ${1}) {
-	${2}[key]
+		${2}[key]
 }
 endsnippet
 
 snippet while
 while (${1}) {
-	${2}
+		${2}
 }
 endsnippet
 
 snippet do
 do {
-	${1}
+		${1}
 } while (${2})
 endsnippet
 
 
 snippet switch
 switch (${1}) {
-	case '${2}':
-		${3}
-		break
-	default:
-		${4}
+		case '${2}':
+			${3}
+			break
+		default:
+			${4}
 }
 endsnippet
 
@@ -73,7 +73,7 @@ endsnippet
 
 snippet fun "function" b
 function ${1:name}(${2}) {
-	${3:${VISUAL}}
+		${3:${VISUAL}}
 }
 endsnippet
 
@@ -87,7 +87,7 @@ endsnippet
 
 snippet test 
 test('${1}', () => {
-	expect(${2}(${3})).toBe(${4})
+		expect(${2}(${3})).toBe(${4})
 })
 endsnippet
 
@@ -115,6 +115,40 @@ endsnippet
 
 snippet Prom 
 new Promise ((resolve, reject) => {
-	${1}
+		${1}
 })
+endsnippet
+
+snippet tr "try" b
+try {
+		${1:${VISUAL}}
+} catch(e) {
+		${2}
+}
+endsnippet
+
+snippet if "try" b
+if (${1}) {
+		${2:${VISUAL}}	
+}  
+endsnippet
+
+
+snippet reaCl "Class expression" b
+class ${1:Name} extends React.Component {
+		constructor(props, ${2:one}) {
+				super(props)
+				this.state = {
+						${3:name}: '',
+				}
+		}
+		render(){
+				return (
+						<div>
+								${4:this.props.name}
+						</div>
+				)
+		}
+}
+
 endsnippet

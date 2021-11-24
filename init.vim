@@ -4,7 +4,8 @@ set relativenumber
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
-set smartindent
+set autoindent smartindent
+filetype plugin on
 
 let mapleader = " "
 
@@ -27,6 +28,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bkad/CamelCaseMotion'
 Plug 'mattn/emmet-vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 call plug#end()
@@ -36,7 +38,7 @@ let g:user_emmet_leader_key=','
 
 "Makros
 let @a= "%di)"
-let @q = "GIresult = iiOreï¿½kbï¿½kbï¿½kbï¿½kbï¿½kbï¿½kblet res;"
+let @q = "GIresult = iiOre€kb€kb€kb€kb€kb€kblet res;"
 let @w = "oconsole.log(resultiij"
 
 "jest
@@ -73,7 +75,8 @@ nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 
 "prettier
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-nnoremap <leader>1 :Prettier<cr>
+" nnoremap <leader>1 :Prettier<cr>
+nnoremap <leader>1 :!prettier -w % <cr><cr>
 " nmap <leader>1 :call CocAction('runCommand', 'prettier.formatFile')<cr>
 
 " Find files using Telescope command-line sugar.
