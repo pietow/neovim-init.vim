@@ -36,7 +36,7 @@ let g:user_emmet_leader_key=','
 
 "Makros
 let @a= "%di)"
-let @q = "GIresult = iiOre€kb€kb€kb€kb€kb€kblet res;"
+let @q = "GIresult = iiOreï¿½kbï¿½kbï¿½kbï¿½kbï¿½kbï¿½kblet res;"
 let @w = "oconsole.log(resultiij"
 
 "jest
@@ -206,6 +206,7 @@ set undodir=$HOME/.config/nvim/undodir
 " EOF
 " lua require('basic')
 " lua require('usermod.settings')
+    
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
 
