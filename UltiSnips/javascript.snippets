@@ -77,6 +77,12 @@ function ${1:name}(${2}) {
 }
 endsnippet
 
+snippet  arro "function" b
+const ${1:name} = (${2}) => {
+		${3:${VISUAL}}
+}
+endsnippet
+
 snippet "(.)(=>)" "arrow function" r
 `!p snip.rv = match.group(1)`(${1}) => ${2}
 endsnippet
@@ -133,6 +139,7 @@ if (${1}) {
 }  
 endsnippet
 
+####### React ############
 
 snippet reaCl "Class expression" b
 class ${1:Name} extends React.Component {
@@ -151,4 +158,26 @@ class ${1:Name} extends React.Component {
 		}
 }
 
+endsnippet
+
+global !p
+def name(stri):
+	return stri
+endglobal
+
+snippet reFun "Functional Component" b
+const ${1:Name} = () => {
+	${2}
+	return (
+		<${3}>
+			${4}
+`!p
+snip.rv = '        </' + name(t[3]) + '>' 
+`
+		   )
+}
+
+`!p
+snip.rv = 'export default ' + name(t[1]) 
+`
 endsnippet
