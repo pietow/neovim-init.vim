@@ -29,9 +29,29 @@ Plug 'honza/vim-snippets'
 Plug 'bkad/CamelCaseMotion'
 Plug 'mattn/emmet-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'easymotion/vim-easymotion'
+Plug 'andymass/vim-matchup'
+" Plug 'Galooshi/vim-import-js'
 
 let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 call plug#end()
+
+"auto-pair
+" let g:AutoPairsShortcutFastWrap = 1
+"very cool: ()|hello ---Alt + e ---> (hello)
+"very cool: (|)[hello] ---Alt + ] ---> ([hello])
+
+"matchup
+let g:matchup_surround_enabled = 1
+augroup matchup_matchparen_highlight
+  autocmd!
+  autocmd ColorScheme * hi MatchParen cterm=underline gui=underline guisp=red
+  " autocmd ColorScheme * hi MatchParen  guisp=#282a36
+  autocmd ColorScheme * hi MatchParenCur cterm=underline gui=underline guisp=red
+  " autocmd ColorScheme * hi MatchWord cterm=underline gui=underline guisp=red
+  " autocmd ColorScheme * hi MatchWordCur guifg=red cterm=underline gui=underline guisp=#282a36
+augroup END
+let g:matchup_matchparen_offscreen = {'mehod': 'popup'}
 
 "Emmet-vim
 let g:user_emmet_leader_key=','
@@ -77,6 +97,7 @@ nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " nnoremap <leader>1 :Prettier<cr>
 nnoremap <leader>1 :!prettier -w % <cr><cr>
+" nnoremap <leader>1 :!js-beautify -r -X % & prettier -w % <cr><cr>
 " nmap <leader>1 :call CocAction('runCommand', 'prettier.formatFile')<cr>
 
 " Find files using Telescope command-line sugar.
@@ -173,7 +194,7 @@ nmap <Leader>t :tabedit %<cr>
 nnoremap <Leader>o : only<cr>
 
 "Add simple highlight removal.
-nmap <Leader><space> :nohlsearch<cr>
+nmap <Leader><space><space> :nohlsearch<cr>
 
 "removing annoying pseudo quotes
 nnoremap <leader>q :silent! call ReplaceQuotes()<CR>
