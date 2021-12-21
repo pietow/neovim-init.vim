@@ -31,11 +31,16 @@ Plug 'andymass/vim-matchup'
 
 "#######LSP
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim'
+
 
 call plug#end()
 
-
+"Diagnostics
+nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+"preview definition
+nnoremap <silent><leader>gd :Lspsaga preview_definition<CR>
 "Async LSP Finder
 nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
 " show hover doc
@@ -80,11 +85,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 
 "prettier
-" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-" nnoremap <leader>1 :Prettier<cr>
-nnoremap <leader>1 :!prettier -w % <cr><cr> :e <cr>
-" nnoremap <leader>1 :!js-beautify -r -X % & prettier -w % <cr><cr>
-" nmap <leader>1 :call CocAction('runCommand', 'prettier.formatFile')<cr>
+" nnoremap <leader>1 :!prettier -w % <cr><cr> :e <cr>
+"lsp prettier
+nnoremap <leader>1 :lua vim.lsp.buf.formatting_seq_sync()<cr>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
