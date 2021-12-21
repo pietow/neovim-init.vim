@@ -161,6 +161,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 " nnoremap J mzJ'z
 
+"upper/lower case
+nnoremap <leader>u vgU
+nnoremap <leader>l vgu
+
 "undo break points
 inoremap , ,<c-g>u
 inoremap ? ?<c-g>u
