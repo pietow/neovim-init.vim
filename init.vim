@@ -31,9 +31,15 @@ Plug 'andymass/vim-matchup'
 
 "#######LSP
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
+Plug 'glepnir/lspsaga.nvim'
 
 call plug#end()
 
+
+"Async LSP Finder
+nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
+" show hover doc
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
 "auto-pair
 " let g:AutoPairsShortcutFastWrap = 1
@@ -196,3 +202,4 @@ set undodir=$HOME/.config/nvim/undodir
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
 
+lua require 'lsp'
