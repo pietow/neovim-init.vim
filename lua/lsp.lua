@@ -10,7 +10,12 @@ local on_attach = function(client, bufnr)
 end
 -- TypeScript
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+      init_options = {
+        preferences = {
+            disableSuggestions = true
+        }
+    }
 } 
 
 --Hover doc
@@ -26,14 +31,14 @@ handlers["textDocument/signatureHelp"] = lsp.with(handlers.signature_help, pop_o
 local saga = require 'lspsaga'
 
 saga.init_lsp_saga {
-  error_sign = '',
-  warn_sign = '',
-  hint_sign = '',
-  infor_sign = '',
+  error_sign = '⚠️',
+  warn_sign = 'W',
+  hint_sign = 'H',
+  infor_sign = '⚠️',
   border_style = "round",
   finder_definition_icon = '  ',
   finder_reference_icon = '  ',
-  max_preview_lines = 100, -- preview lines of lsp_finder and definition preview
+  max_preview_lines = 50, -- preview lines of lsp_finder and definition preview
   finder_action_keys = {
       open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
   },
@@ -51,7 +56,7 @@ nvim_lsp.diagnosticls.setup {
       eslint = {
         command = 'eslint_d',
         rootPatterns = { '.git' },
-        debounce = 100,
+        debounce = 10,
         args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
         sourceName = 'eslint_d',
         parseJson = {
@@ -103,12 +108,16 @@ nvim_lsp.diagnosticls.setup {
 
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = {
+        severity_limit='all'
+    },
     underline = true,
     -- This sets the spacing and the prefix, obviously.
     virtual_text = {
-      spacing = 4,
-      prefix = ''
+        spacing = 6,
+        update_in_insert = false,
+        prefix = ' '
     }
-  }
+}
 )

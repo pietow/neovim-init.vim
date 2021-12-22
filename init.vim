@@ -33,10 +33,14 @@ Plug 'andymass/vim-matchup'
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
 " Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
-
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
+"move through errors/warnings
+nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent><C-j> :Lspsaga diagnostic_jump_next<CR>
 "Diagnostics
 nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
 "preview definition
@@ -133,8 +137,8 @@ inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 inoremap . .<c-g>u
 
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
+" nnoremap <C-j> :cnext<CR>
+" nnoremap <C-k> :cprev<CR>
 
 "highlight and yank, then you can paste it a higlighted area
 vnoremap <leader>f "_dP 
