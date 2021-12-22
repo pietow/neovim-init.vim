@@ -33,10 +33,19 @@ Plug 'andymass/vim-matchup'
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
 " Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
+Plug 'creativenull/diagnosticls-configs-nvim'
+"for easier efm-server configuration:
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
+"tree-sitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 call plug#end()
 
+nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent><C-j> :Lspsaga diagnostic_jump_next<CR>
 "Diagnostics
 nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
 "preview definition
@@ -85,9 +94,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 
 "prettier
-" nnoremap <leader>1 :!prettier -w % <cr><cr> :e <cr>
+nnoremap <leader>1 :!prettier -w % <cr><cr> :e <cr>
 "lsp prettier
-nnoremap <leader>1 :lua vim.lsp.buf.formatting_seq_sync()<cr>
+" nnoremap <leader>1 :lua vim.lsp.buf.formatting_seq_sync()<cr>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -133,8 +142,8 @@ inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 inoremap . .<c-g>u
 
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
+" nnoremap <C-j> :cnext<CR>
+" nnoremap <C-k> :cprev<CR>
 
 "highlight and yank, then you can paste it a higlighted area
 vnoremap <leader>f "_dP 
@@ -206,3 +215,15 @@ command! Scratch lua require'tools'.makeScratch()
 nnoremap <Leader>c :Scratch<cr>
 
 lua require 'lsp'
+lua require 'version'
+
+"efm language server
+augroup LspEFM
+  au!
+  autocmd User lsp_setup call lsp#register_server({
+      \ 'name': 'efm-langserver',
+      \ 'cmd': {server_info->['go/bin/efm-langserver', '-c=~/.config/efm-langserver/config.yaml']},
+      \ 'allowlist': ['vim', 'eruby', 'markdown', 'yaml'],
+      \ })
+augroup END
+
