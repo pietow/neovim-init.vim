@@ -44,6 +44,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
+"move through errors/warnings
 nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent><C-j> :Lspsaga diagnostic_jump_next<CR>
 "Diagnostics
@@ -216,14 +217,4 @@ nnoremap <Leader>c :Scratch<cr>
 
 lua require 'lsp'
 lua require 'version'
-
-"efm language server
-augroup LspEFM
-  au!
-  autocmd User lsp_setup call lsp#register_server({
-      \ 'name': 'efm-langserver',
-      \ 'cmd': {server_info->['go/bin/efm-langserver', '-c=~/.config/efm-langserver/config.yaml']},
-      \ 'allowlist': ['vim', 'eruby', 'markdown', 'yaml'],
-      \ })
-augroup END
 

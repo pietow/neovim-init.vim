@@ -82,15 +82,3 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
 
 
---emf language-server
-require'lspconfig'.efm.setup{ 
-    init_options = {documentFormatting = true},
-    settings = {
-        rootMarkers = {".git/"},
-        languages = {
-            javascript = {
-                {formatCommand = "prettier -w %", formatStdin = true}
-            }
-        }
-    }
-}
