@@ -20,8 +20,14 @@ Plug '907th/vim-auto-save'
 Plug 'https://github.com/tpope/vim-surround'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+
+"######Fuzzy Finder
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+"######Icons for telescope
+Plug 'kyazdani42/nvim-web-devicons'
+
 Plug 'SirVer/ultisnips'
 Plug 'bkad/CamelCaseMotion'
 Plug 'mattn/emmet-vim'
@@ -38,6 +44,13 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 call plug#end()
+
+
+"telescope  
+nnoremap <silent><leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent><leader>rr <cmd>Telescope live_grep<cr>
+nnoremap <silent><leader>bb <cmd>Telescope buffers<cr>
+nnoremap <silent><leader>; <cmd>Telescope help_tags<cr>
 
 "autocompletion
 let g:coq_settings = { 'auto_start': v:true,'display': {'icons': {'mappings': 
@@ -69,8 +82,6 @@ let g:coq_settings = { 'auto_start': v:true,'display': {'icons': {'mappings':
             \'TypeParameter':'', 
             \}
             \}}}
-
-
 
 "move through errors/warnings
 nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
