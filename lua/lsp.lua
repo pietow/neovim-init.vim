@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+local coq = require "coq"
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -8,25 +9,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   --...
 end
+
 -- TypeScript
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-      init_options = {
-        preferences = {
-            disableSuggestions = true
-        }
-    }
-} 
-
---Hover doc
-local lsp = vim.lsp
-local handlers = lsp.handlers
-
--- Hover doc popup
-local pop_opts = { border = "rounded", max_width = 80 }
-handlers["textDocument/hover"] = lsp.with(handlers.hover, pop_opts)
-handlers["textDocument/signatureHelp"] = lsp.with(handlers.signature_help, pop_opts)
-
+nvim_lsp.tsserver.setup(coq.lsp_ensure_capabilities({on_attach=on_attach}))
 
 local saga = require 'lspsaga'
 

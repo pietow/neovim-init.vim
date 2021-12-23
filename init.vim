@@ -31,12 +31,46 @@ Plug 'andymass/vim-matchup'
 
 "#######LSP
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
-" Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
 
+"####Autocompletion
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 call plug#end()
+
+"autocompletion
+let g:coq_settings = { 'auto_start': v:true,'display': {'icons': {'mappings': 
+            \{ 
+            \'Text': '', 
+            \'Method':'', 
+            \'Function':'', 
+            \'Constructor':'', 
+            \'Field':'', 
+            \'Variable':'', 
+            \'Class':'', 
+            \'Interface':'ﰮ', 
+            \'Module':'', 
+            \'Property':'', 
+            \'Unit':'', 
+            \'Value':'', 
+            \'Enum':'', 
+            \'Keyword':'', 
+            \'Snippet':'﬌', 
+            \'Color':'', 
+            \'File':'', 
+            \'Reference':'', 
+            \'Folder':'', 
+            \'EnumMember':'', 
+            \'Constant':'', 
+            \'Struct':'', 
+            \'Event':'', 
+            \'Operator':'ﬦ', 
+            \'TypeParameter':'', 
+            \}
+            \}}}
+
+
 
 "move through errors/warnings
 nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
@@ -48,8 +82,8 @@ nnoremap <silent><leader>gd :Lspsaga preview_definition<CR>
 "Async LSP Finder
 nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
 " show hover doc
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-
+" nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
 "auto-pair
 " let g:AutoPairsShortcutFastWrap = 1
 "very cool: ()|hello ---Alt + e ---> (hello)
