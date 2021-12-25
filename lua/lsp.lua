@@ -71,10 +71,10 @@ nvim_lsp.diagnosticls.setup {
         args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
         rootPatterns = { '.git' },
       },
-      prettier = {
-        command = 'prettier',
-        args = { '--stdin-filepath', '%filename' }
-      }
+      -- prettier = {
+      --   command = 'prettier',
+      --   args = { '--stdin-filepath', '%filename' }
+      -- }
     },
     formatFiletypes = {
       css = 'prettier',

@@ -46,6 +46,10 @@ Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 call plug#end()
 
 
+"code_action: e.g. auto import
+nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+"rename
+nnoremap <silent>gr :Lspsaga rename<CR>
 "telescope  
 nnoremap <silent><leader>ff <cmd>Telescope find_files<cr>
 nnoremap <silent><leader>rr <cmd>Telescope live_grep<cr>
