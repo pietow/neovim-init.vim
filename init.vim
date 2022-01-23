@@ -38,13 +38,27 @@ Plug 'andymass/vim-matchup'
 "#######LSP
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
 Plug 'tami5/lspsaga.nvim'
+"#######Autoimport
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 "####Autocompletion
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+"####vim-jsDoc
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
+"####remember cursor position (always to go down again is so annoying)
+Plug 'farmergreg/vim-lastplace'
+
 call plug#end()
 
+"JSDoc setting
+nmap <silent> <C-s> <Plug>(jsdoc)
 
 "code_action: e.g. auto import
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
@@ -57,7 +71,7 @@ nnoremap <silent><leader>bb <cmd>Telescope buffers<cr>
 nnoremap <silent><leader>; <cmd>Telescope help_tags<cr>
 
 "autocompletion
-let g:coq_settings = { 'auto_start': v:true,'display': {'icons': {'mappings': 
+let g:coq_settings = { 'auto_start': v:true, 'keymap.recommended': v:false, 'display': {'icons': {'mappings': 
             \{ 
             \'Text': '', 
             \'Method':'', 
@@ -86,6 +100,8 @@ let g:coq_settings = { 'auto_start': v:true,'display': {'icons': {'mappings':
             \'TypeParameter':'', 
             \}
             \}}}
+
+ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 
 "move through errors/warnings
 nnoremap <silent><C-k> :Lspsaga diagnostic_jump_prev<CR>
@@ -137,8 +153,8 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 
-"prettier
-" nnoremap <leader>1 :!prettier -w % <cr><cr> :e <cr>
+"prettier in case lsp eslint fix is not working
+nnoremap <leader>2 :!prettier -w % <cr><cr> :e <cr>
 "lsp prettier
 nnoremap <leader>1 :lua vim.lsp.buf.formatting_seq_sync()<cr>
 
@@ -158,6 +174,13 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 set termguicolors     " enable true colors support
 colorscheme dracula
 
+"exutable
+nnoremap <leader>x :!chmod +x %<cr>
+"new tmux window
+" set background=dark
+nnoremap <leader>tw :!tmux new-window<cr>
+"sheetcheat
+nnoremap <leader>s :!curl cht.sh/javascript/
 
 nnoremap <leader>pv :Vex<CR>
 nnoremap - :Ex<CR>
@@ -257,5 +280,7 @@ set undodir=$HOME/.config/nvim/undodir
     
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
+command! Window lua require'window'.create_window() 
+nnoremap <Leader>3 :Window<cr>
 
 lua require 'lsp'
