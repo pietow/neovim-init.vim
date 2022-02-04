@@ -54,8 +54,14 @@ Plug 'heavenshell/vim-jsdoc', {
 \}
 "####remember cursor position (always to go down again is so annoying)
 Plug 'farmergreg/vim-lastplace'
-
+"######## Handelbard view engine syntax
+" Plug 'mustache/vim-mustache-handlebars'
+Plug 'digitaltoad/vim-pug'
 call plug#end()
+
+"associate .handlebars and .hbs with HTML
+au BufNewFile,BufRead *.handlebars set filetype=html
+au BufNewFile,BufRead *.ejs set filetype=html
 
 "JSDoc setting
 nmap <silent> <C-s> <Plug>(jsdoc)
@@ -153,6 +159,8 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 nmap <Leader>es :e ~/.config/nvim/UltiSnips<cr>
 
+"js-beautify 
+nnoremap <leader>3 :!js-beautify --type html -r % <cr><cr> :e <cr>
 "prettier in case lsp eslint fix is not working
 nnoremap <leader>2 :!prettier -w % <cr><cr> :e <cr>
 "lsp prettier
@@ -281,6 +289,6 @@ set undodir=$HOME/.config/nvim/undodir
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
 command! Window lua require'window'.create_window() 
-nnoremap <Leader>3 :Window<cr>
+" nnoremap <Leader>3 :Window<cr>
 
 lua require 'lsp'
