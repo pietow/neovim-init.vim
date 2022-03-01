@@ -35,6 +35,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'easymotion/vim-easymotion'
 Plug 'andymass/vim-matchup'
 
+"#######COC
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "#######LSP
 Plug 'neovim/nvim-lspconfig' "lua vim.lsp.stop_client(vim.lsp.get_active_clients()) you need to run for new tsconfig.json
 Plug 'tami5/lspsaga.nvim'
@@ -186,7 +189,7 @@ colorscheme dracula
 nnoremap <leader>x :!chmod +x %<cr>
 "new tmux window
 " set background=dark
-nnoremap <leader>tw :!tmux new-window<cr>
+nnoremap <leader>tw :!tmux new-window<cr><cr>
 "sheetcheat
 nnoremap <leader>s :!curl cht.sh/javascript/
 
