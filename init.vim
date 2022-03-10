@@ -252,6 +252,8 @@ nnoremap <leader>p :!python3 %<CR>
 
 "toggle line number
 nnoremap <leader>r :set relativenumber!<cr>
+" nnoremap <leader>z :set nu!<cr>
+nnoremap <leader>zr :set relativenumber! nu!<cr>
 
 "add console.log
 " nmap <Leader>cl _v$S)_iconsole.log
