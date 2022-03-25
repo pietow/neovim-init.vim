@@ -186,7 +186,7 @@ colorscheme dracula
 nnoremap <leader>x :!chmod +x %<cr>
 "new tmux window
 " set background=dark
-nnoremap <leader>tw :!tmux new-window<cr>
+nnoremap <leader>tw :!tmux new-window<cr><cr>
 "sheetcheat
 nnoremap <leader>s :!curl cht.sh/javascript/
 
@@ -260,6 +260,7 @@ nnoremap <leader>zr :set relativenumber! nu!<cr>
 
 "Edit init.vim easy"
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
+nmap <Leader>lu :tabedit ~/.config/nvim/lua/<cr>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 "open tab
@@ -270,6 +271,9 @@ nnoremap <Leader>o : only<cr>
 
 "Add simple highlight removal.
 nmap <Leader><space><space> :nohlsearch<cr>
+
+"swap wndows
+noremap <Leader><Leader>s <C-w>x
 
 "Disable auto comment on new line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
@@ -290,7 +294,11 @@ set undodir=$HOME/.config/nvim/undodir
     
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
-command! Window lua require'window'.create_window() 
+command! Window lua require'mocha'.createFloatingWindow() 
 " nnoremap <Leader>3 :Window<cr>
 
 lua require 'lsp'
+
+"TERMINAL MODE
+"Exit
+tnoremap <Esc> <C-\><C-n>
