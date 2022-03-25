@@ -295,6 +295,9 @@ set undodir=$HOME/.config/nvim/undodir
 command! Scratch lua require'tools'.makeScratch() 
 nnoremap <Leader>c :Scratch<cr>
 command! Window lua require'mocha'.createFloatingWindow() 
+nnoremap <Leader>m :Window<cr>
+nnoremap <Leader>q :close<cr>
+
 " nnoremap <Leader>3 :Window<cr>
 
 lua require 'lsp'
