@@ -54,7 +54,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- TypeScript
-nvim_lsp.tsserver.setup(coq.lsp_ensure_capabilities({on_attach=on_attach}))
+-- nvim_lsp.tsserver.setup(coq.lsp_ensure_capabilities({on_attach=on_attach}))
 
 local saga = require 'lspsaga'
 
@@ -149,3 +149,5 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
     }
 }
 )
+
+require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
