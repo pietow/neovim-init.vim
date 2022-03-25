@@ -181,3 +181,43 @@ snip.rv = '        </' + name(t[3]) + '>'
 snip.rv = 'export default ' + name(t[1]) 
 `
 endsnippet
+
+snippet ife "IIFE Pattern" 
+(function () {
+	'use strict'
+	${1}
+	module.exports = {
+
+	}
+})()
+endsnippet
+
+
+#####Mocha test runner
+snippet des "describe"
+describe('${1}', function () {
+	${2}
+})
+endsnippet
+
+snippet it "it"
+it('${1}', function () {
+	${2}
+})
+endsnippet
+
+snippet ex "expect"
+expect(${1}).to.be.a('${2}')
+endsnippet
+
+snippet be "beforeEach"
+beforeEach(function () {
+	${1}
+})
+endsnippet
+
+snippet ae "afterEach"
+afterEach(function () {
+	${1}
+})
+endsnippet
