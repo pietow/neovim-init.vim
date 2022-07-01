@@ -247,6 +247,9 @@ nnoremap G Gzz
 
 "run node on current file
 nnoremap <leader>n :!node %<CR>
+"generate secrete
+nnoremap <leader><leader>g :!node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"<CR>
+
 "run python on current file
 nnoremap <leader>p :!python3 %<CR>
 
