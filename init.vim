@@ -57,6 +57,7 @@ Plug 'farmergreg/vim-lastplace'
 "######## Handelbard view engine syntax
 " Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
+Plug 'github/copilot.vim'
 call plug#end()
 
 "associate .handlebars and .hbs with HTML
