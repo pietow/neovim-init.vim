@@ -2,16 +2,6 @@ snippet i
 import ${1} from '${2}';
 endsnippet
 
-# snippet if
-# if (${1}) {
-# 	${2}
-# } else if (${3}) {
-# 	${4}
-# } else {
-# 	${5}	
-# }
-# endsnippet
-
 snippet cl
 console.log(${1})
 endsnippet
@@ -61,10 +51,6 @@ switch (${1}) {
 			${4}
 }
 endsnippet
-
-# snippet $
-# \${${1}}
-# endsnippet
 
 snippet "(.)(\$)" "string interpolation " r
 `!p snip.rv = match.group(1) + match.group(2)`{${1}}
@@ -163,6 +149,14 @@ endsnippet
 global !p
 def name(stri):
 	return stri
+def component(stri):
+	return stri
+def getName():
+	buff = vim.current.buffer
+	path = buff.name
+	file = path.split('/')[-1]
+	name = file.split('.')[0]
+	return name
 endglobal
 
 snippet reFun "Functional Component" b
@@ -174,7 +168,7 @@ const ${1:Name} = () => {
 `!p
 snip.rv = '        </' + name(t[3]) + '>' 
 `
-		   )
+)
 }
 
 `!p
@@ -182,16 +176,35 @@ snip.rv = 'export default ' + name(t[1])
 `
 endsnippet
 
+snippet jsx "index" 
+import ${1:Component} from '`!p snip.rv = './' + component(t[1])`'
+
+`!p
+snip.rv = 'export default ' + component(t[1])
+`
+endsnippet
+
+snippet rea "boilerplatte" 
+import React from 'react'
+
+export default function `!p snip.rv = getName()`() {
+	${1}
+	return (
+		<div>${2}</div>
+	)
+}
+endsnippet
+
+#### Backend
 snippet ife "IIFE Pattern" 
 (function () {
 	'use strict'
-	${1}
+	
 	module.exports = {
-
+		${1}
 	}
 })()
 endsnippet
-
 
 #####Mocha test runner
 snippet des "describe"
