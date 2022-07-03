@@ -1,0 +1,17 @@
+snippet i 
+import ${1} as '${2}';
+endsnippet
+
+snippet cl
+print(${1})
+endsnippet
+
+snippet fun "function" b
+def ${1:name}(${2}): 	
+	${3:${VISUAL}}
+endsnippet
+
+
+snippet "(\S+) (\d+)" "Repeat token n times" r
+`!p snip.rv = int(match.group(2)) * match.group(1)`
+endsnippet
