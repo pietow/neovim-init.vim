@@ -58,7 +58,18 @@ Plug 'farmergreg/vim-lastplace'
 " Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
 Plug 'github/copilot.vim'
+"auto import 
+Plug 'Galooshi/vim-import-js'
+
+Plug '~/example-plugin'
+Plug '~/lshare-plugin'
+Plug 'antoinemadec/FixCursorHold.nvim'
 call plug#end()
+
+
+" in millisecond, used for both CursorHold and CursorHoldI,
+" use updatetime instead if not defined
+let g:cursorhold_updatetime = 100
 
 "associate .handlebars and .hbs with HTML
 au BufNewFile,BufRead *.handlebars set filetype=html
@@ -264,7 +275,7 @@ nnoremap <leader>zr :set relativenumber! nu!<cr>
 
 "Edit init.vim easy"
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
-nmap <Leader>lu :tabedit ~/.config/nvim/lua/<cr>
+nmap <Leader><leader>lu :tabedit ~/.config/nvim/lua/<cr>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 "open tab
@@ -281,6 +292,8 @@ noremap <Leader><Leader>s <C-w>x
 
 "Disable auto comment on new line
 autocmd BufNewFile,BufRead * setlocal formatoptions-=ro
+
+
 "--------Auto-Commands-----"
 "Automatically source the Vimrc file on save.
 augroup autosourcing
@@ -302,10 +315,19 @@ command! Window lua require'mocha'.createFloatingWindow()
 nnoremap <Leader>m :Window<cr>
 nnoremap <Leader>q :close<cr>
 
+
+au CursorHoldI * lua require'example-plugin'.insert_todo()
+" au CursorMoved * lua require'example-plugin'.insert_todo()
+
 " nnoremap <Leader>3 :Window<cr>
-
 lua require 'lsp'
-
 "TERMINAL MODE
 "Exit
 tnoremap <Esc> <C-\><C-n>
+
+"open kitkraken
+nnoremap <leader>i :!gitkraken .<cr>
+nnoremap <leader>ti :e tests/integration/ <cr> 
+nnoremap <leader>gc :ImportJSGoto <cr>
+
+

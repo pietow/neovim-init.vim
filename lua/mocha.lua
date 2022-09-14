@@ -26,7 +26,7 @@ local function createFloatingWindow()
             border="rounded"
     })
     vim.cmd('terminal')
-    vim.cmd('call jobsend(b:terminal_job_id, "mocha --slow 0 ' .. file .. ' ../. \\n")')
+    vim.cmd('call jobsend(b:terminal_job_id, "NODE_ENV=testing mocha --timeout 3000 --slow 0 ' .. file .. ' ../. \\n")')
 end
 
 return {
